@@ -10,7 +10,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <ul class="nav navbar-nav ms-auto w-100 justify-content-end me-5">
-                    <a href="#" class="nav-link">
+                    <a href="<?= base_url("transaksi") ?>" class="nav-link">
                         <i class="fa-solid fa-money-bill me-1"></i>
                         Transaksi
                     </a>

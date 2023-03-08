@@ -12,7 +12,7 @@
                             Membuat, Mengubah dan Menghapus Transaksi
                         </p>
                         <div class="d-flex justify-content-end">
-                            <a href="" class="btn btn-dark">
+                            <a href="<?= base_url('transaksi') ?>" class="btn btn-dark">
                                 <i class="fa-solid fa-right-to-bracket"></i>
                                 Lihat Transaksi
                             </a>
