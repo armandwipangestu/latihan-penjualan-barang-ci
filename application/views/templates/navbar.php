@@ -1,7 +1,7 @@
 <!-- Start Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="<?= base_url("admin") ?>">
                 <img src="<?= base_url('assets') ?>/img/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
                 Penjualan Barang
             </a>
