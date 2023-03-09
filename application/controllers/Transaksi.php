@@ -38,4 +38,33 @@ Class Transaksi extends CI_Controller {
             redirect('transaksi');
         }
     }
+
+    public function edit() {
+        $id_transaksi = $this->uri->segment(3);
+        $query = $this->db->get_where('transaksi', ['id_transaksi' => $id_transaksi])->row_array();
+        $data["transaksi"] = $query;
+
+        $this->load->model('Transaksi_model', 'transaksi');
+        $data["barang"] = $this->transaksi->getBarangById($data['transaksi']['id_barang']);
+        $data['pembeli'] = $this->transaksi->getPembeliById($data['transaksi']['id_pembeli']);
+
+        $data['barangs'] = $this->db->get('barang')->result_array();
+        $data['pembelis'] = $this->db->get('pembeli')->result_array();
+        
+        $data['title'] = "Edit Transaksi";
+
+        $this->form_validation->set_rules('barang', "Barang", "trim|required");
+        $this->form_validation->set_rules('pembeli', "Pembeli", "trim|required");
+        $this->form_validation->set_rules('tanggal', "Tanggal", "trim|required");
+        $this->form_validation->set_rules('keterangan', "Keterangan", "trim|required");
+
+        if($this->form_validation->run() == false) {
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/navbar');
+            $this->load->view('transaksi/edit', $data);
+            $this->load->view('templates/footer');
+        } else {
+
+        }
+    }
 }

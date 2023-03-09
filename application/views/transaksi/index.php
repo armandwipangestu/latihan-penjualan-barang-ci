@@ -33,7 +33,7 @@
                         <td><?= $ts['tanggal'] ?></td>
                         <td><?= $ts['keterangan'] ?></td>
                         <td>
-                            <a href="ubah.php?id=<?= $ts['id_transaksi'] ?>" class="badge text-bg-success mr-2">
+                            <a href="<?= base_url('transaksi/edit/') . $ts['id_transaksi'] ?>" class="badge text-bg-success mr-2">
                                 <i class="fas fa-edit"></i>
                                 Ubah
                             </a>
