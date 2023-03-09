@@ -1,5 +1,5 @@
 <!-- Start Panel -->
-    <div class="container mt-5 mb-5">
+    <div class="container mt-5 mb-5 px-4">
         <div class="row">
             <div class="col-md-6">
                 <div class="row">

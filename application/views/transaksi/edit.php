@@ -2,7 +2,7 @@
     <h3>Ubah Transaksi</h3>
     <hr>
 
-    <div class="row">
+    <div class="row mb-5">
         <div class="col-lg">
 
             <form method="POST" action="">
@@ -49,15 +49,15 @@
 
                     </div>
 
-                        <div class="d-flex justify-content-end">
-                            <button type="submit" class="btn btn-primary" name="ubah_transaksi">
-                                <i class="fa-solid fa-plus me-1"></i>
-                                Ubah Transaksi
-                            </button>
-                        </div>
-
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary" name="ubah_transaksi">
+                            <i class="fa-solid fa-plus me-1"></i>
+                            Ubah Transaksi
+                        </button>
                     </div>
-                </form>
-            </div>
+
+                </div>
+            </form>
         </div>
     </div>
+</div>
