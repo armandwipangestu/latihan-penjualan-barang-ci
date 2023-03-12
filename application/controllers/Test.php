@@ -1,8 +1,10 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-Class Test extends CI_Controller {
-    public function index() {
+class Test extends CI_Controller
+{
+    public function index()
+    {
         $data['title'] = 'Test Load Bootstrap Etc';
         $data['dummy'] = [
             [
