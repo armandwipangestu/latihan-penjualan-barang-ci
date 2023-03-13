@@ -89,4 +89,13 @@ class Barang extends CI_Controller
             redirect('barang/edit/' . $this->input->post('id_barang'));
         }
     }
+
+    public function delete()
+    {
+        $id_barang = $this->uri->segment(3);
+        $this->db->where('id_barang', $id_barang);
+        $this->db->delete('barang');
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Barang Berhasil Dihapus!</div>');
+        redirect('barang');
+    }
 }
