@@ -17,16 +17,22 @@ class Transaksi extends CI_Controller
         $this->load->model('Transaksi_model', 'transaksi');
         $data['transaksi'] = $this->transaksi->getTransaksi();
 
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/navbar');
+        $this->load->view('transaksi/index', $data);
+        $this->load->view('templates/footer');
+    }
+
+    public function create()
+    {
         $this->form_validation->set_rules('barang', "Barang", "trim|required");
         $this->form_validation->set_rules('pembeli', "Pembeli", "trim|required");
         $this->form_validation->set_rules('tanggal', "Tanggal", "trim|required");
         $this->form_validation->set_rules('keterangan', "Keterangan", "trim|required");
 
-        if ($this->form_validation->run() == false) {
-            $this->load->view('templates/header', $data);
-            $this->load->view('templates/navbar');
-            $this->load->view('transaksi/index', $data);
-            $this->load->view('templates/footer');
+        if ($this->form_validation->run() == FALSE) {
+            $this->session->set_flashdata('message', '<div class="alert alert-danger">Transaksi Gagal Ditambahkan!</div>');
+            redirect('transaksi');
         } else {
             $data = [
                 'id_barang' => htmlspecialchars($this->input->post('barang', true)),

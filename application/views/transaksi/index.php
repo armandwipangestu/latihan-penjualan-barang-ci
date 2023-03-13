@@ -58,7 +58,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <form action="<?= base_url('transaksi') ?>" method="POST">
+                <form action="<?= base_url('transaksi/create') ?>" method="POST">
                     <div class="modal-body">
 
                         <div class="">
