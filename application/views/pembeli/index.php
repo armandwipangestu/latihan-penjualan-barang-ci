@@ -97,16 +97,18 @@
         const hapusSupplier = document.querySelectorAll('.hapus')
         hapusSupplier.forEach((hapus) => {
             hapus.addEventListener('click', () => {
-                const supplier = hapus.dataset.supplier;
+                const pembeli = hapus.dataset.pembeli;
+                const jk = hapus.dataset.jk;
                 const telepon = hapus.dataset.telepon;
                 const alamat = hapus.dataset.alamat;
 
                 Swal.fire({
                     icon: 'warning',
                     html: `Apakah anda yakin ingin menghapus: <br>
-                    Nama Supplier: <b>${supplier}</b><br>
-                    Telepon: <b>${telepon}</b><br>
-                    Alamat: <b>${alamat}</b><br>
+                    Nama Pembeli: <b>${pembeli}</b><br>
+                    Jenis Kelamin: <b>${jk}</b><br>
+                    No Telepon: <b>${telepon}</b><br>
+                    Alamat: <b>${alamat}</b>
                     `,
                     showCancelButton: true,
                     confirmButtonColor: '#d9534f',

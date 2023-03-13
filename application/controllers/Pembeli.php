@@ -82,4 +82,13 @@ class Pembeli extends CI_Controller
             redirect('pembeli/edit/' . $this->input->post('id_pembeli'));
         }
     }
+
+    public function delete()
+    {
+        $id_pembeli = $this->uri->segment(3);
+        $this->db->where('id_pembeli', $id_pembeli);
+        $this->db->delete('pembeli');
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Pembeli Berhasil Dihapus!</div>');
+        redirect('pembeli');
+    }
 }
