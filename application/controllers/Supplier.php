@@ -78,4 +78,13 @@ class Supplier extends CI_Controller
             redirect('supplier/edit/' . $this->input->post('id_supplier'));
         }
     }
+
+    public function delete()
+    {
+        $id_supplier = $this->uri->segment(3);
+        $this->db->where('id_supplier', $id_supplier);
+        $this->db->delete('supplier');
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Supplier berhasil dihapus!</div>');
+        redirect('supplier');
+    }
 }
