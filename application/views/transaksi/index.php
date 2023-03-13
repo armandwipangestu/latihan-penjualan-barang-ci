@@ -38,7 +38,7 @@
                                     <i class="fas fa-edit"></i>
                                     Ubah
                                 </a>
-                                <a class="badge text-bg-danger hapus" data-id="<?= $ts['id_transaksi'] ?>" data-barang="<?= $ts['nama_barang'] ?>" data-pembeli="<?= $ts['nama_pembeli'] ?>" data-tanggal="<?= $ts['tanggal'] ?>" data-keterangan="<?= $ts['keterangan'] ?>">
+                                <a class="badge text-bg-danger hapus" data-href="<?= base_url('transaksi/delete/' . $ts['id_transaksi']); ?>" data-id="<?= $ts['id_transaksi'] ?>" data-barang="<?= $ts['nama_barang'] ?>" data-pembeli="<?= $ts['nama_pembeli'] ?>" data-tanggal="<?= $ts['tanggal'] ?>" data-keterangan="<?= $ts['keterangan'] ?>">
                                     <i class="fas fa-trash"></i> Hapus
                                 </a>
                             </td>
@@ -53,10 +53,10 @@
     <div class="modal fade" id="modalTransaksi" tabindex="-1" aria-labelledby="modalTransaksiLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modalTransaksiLabel">Tambah Transaksi</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalTransaksiLabel">Tambah Transaksi</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
                 <form action="<?= base_url('transaksi') ?>" method="POST">
                     <div class="modal-body">
@@ -65,7 +65,7 @@
                             <label for="barang" id="barang" class="form-label">Barang</label>
                             <select name="barang" id="barang" class="form-select">
                                 <option value="" selected>Pilih Barang</option>
-                                <?php foreach($barangs as $barang) : ?>
+                                <?php foreach ($barangs as $barang) : ?>
                                     <option value="<?= $barang['id_barang'] ?>"><?= $barang['nama_barang'] ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -75,7 +75,7 @@
                             <label for="pembeli" id="pembeli" class="form-label">Pembeli</label>
                             <select name="pembeli" id="pembeli" class="form-select">
                                 <option value="" selected>Pilih Pembeli</option>
-                                <?php foreach($pembelis as $pembeli) : ?>
+                                <?php foreach ($pembelis as $pembeli) : ?>
                                     <option value="<?= $pembeli['id_pembeli'] ?>"><?= $pembeli['nama_pembeli'] ?></option>
                                 <?php endforeach; ?>
                             </select>
@@ -102,3 +102,35 @@
             </div>
         </div>
     </div>
+
+    <script>
+        const hapusTransaksi = document.querySelectorAll('.hapus')
+        hapusTransaksi.forEach((hapus) => {
+            hapus.addEventListener('click', () => {
+                const id_transaksi = hapus.dataset.id_transaksi;
+                const barang = hapus.dataset.barang;
+                const pembeli = hapus.dataset.pembeli;
+                const tanggal = hapus.dataset.tanggal;
+                const keterangan = hapus.dataset.keterangan;
+                Swal.fire({
+                    icon: 'warning',
+                    html: `Apakah anda yakin ingin menghapus: <br>
+                    Barang: <b>${barang}</b><br>
+                    Pembeli: <b>${pembeli}</b><br>
+                    Tanggal: <b>${tanggal}</b><br>
+                    Keterangan: <b>${keterangan}</b><br>
+                    `,
+                    showCancelButton: true,
+                    confirmButtonColor: '#d9534f',
+                    cancelButtonColor: '#5cb85c',
+                    confirmButtonText: `<i class="fas fa-trash"></i> Ya`,
+                    cancelButtonText: `Tidak`,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const linkHref = hapus.dataset.href
+                        location.href = `${linkHref}`
+                    }
+                })
+            })
+        })
+    </script>

@@ -86,4 +86,13 @@ class Transaksi extends CI_Controller
             redirect('transaksi/edit/' . $this->input->post('id_transaksi'));
         }
     }
+
+    public function delete()
+    {
+        $id_transaksi = $this->uri->segment(3);
+        $this->db->where('id_transaksi', $id_transaksi);
+        $this->db->delete('transaksi');
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Transaksi Berhasil Dihapus!</div>');
+        redirect('transaksi');
+    }
 }
