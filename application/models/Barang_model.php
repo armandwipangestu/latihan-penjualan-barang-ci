@@ -12,4 +12,13 @@ class Barang_model extends CI_Model
 
         return $this->db->query($query)->result_array();
     }
+
+    public function getSupplierById($id_supplier)
+    {
+        $query = "SELECT id_supplier, nama_supplier FROM `supplier` WHERE id_supplier IN (
+            SELECT id_supplier FROM barang WHERE id_supplier = $id_supplier
+        )";
+
+        return $this->db->query($query)->row_array();
+    }
 }
