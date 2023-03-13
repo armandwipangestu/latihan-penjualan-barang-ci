@@ -20,17 +20,17 @@
                     Supplier
                 </a>
 
-                <a href="#" class="nav-link">
+                <a href="<?= base_url("barang"); ?>" class="nav-link">
                     <i class="fa-solid fa-cubes me-1"></i>
                     Barang
                 </a>
 
-                <a href="#" class="nav-link">
+                <a href="<?= base_url("pembeli"); ?>" class="nav-link">
                     <i class="fa-solid fa-users me-1"></i>
                     Pembeli
                 </a>
 
-                <a href="#" class="nav-link">
+                <a href="<?= base_url("pembayaran"); ?>" class="nav-link">
                     <i class="fa-solid fa-cart-shopping me-1"></i>
                     Pembayaran
                 </a>
