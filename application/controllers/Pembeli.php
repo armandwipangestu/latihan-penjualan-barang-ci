@@ -12,6 +12,8 @@ class Pembeli extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard Pembeli";
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $data['pembeli'] = $this->db->get('pembeli')->result_array();
 
         $this->load->view('templates/header', $data);
@@ -46,11 +48,13 @@ class Pembeli extends CI_Controller
 
     public function edit()
     {
+        $data['title'] = 'Edit Pembeli';
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $id_pembeli = $this->uri->segment(3);
         $query = $this->db->get_where('pembeli', ['id_pembeli' => $id_pembeli])->row_array();
 
         $data['pembeli'] = $query;
-        $data['title'] = 'Edit Pembeli';
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');

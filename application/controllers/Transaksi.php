@@ -12,6 +12,8 @@ class Transaksi extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard Transaksi";
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $data['barangs'] = $this->db->get('barang')->result_array();
         $data['pembelis'] = $this->db->get('pembeli')->result_array();
         $this->load->model('Transaksi_model', 'transaksi');
@@ -49,6 +51,9 @@ class Transaksi extends CI_Controller
 
     public function edit()
     {
+        $data['title'] = "Edit Transaksi";
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $id_transaksi = $this->uri->segment(3);
         $query = $this->db->get_where('transaksi', ['id_transaksi' => $id_transaksi])->row_array();
         $data["transaksi"] = $query;
@@ -60,7 +65,6 @@ class Transaksi extends CI_Controller
         $data['barangs'] = $this->db->get('barang')->result_array();
         $data['pembelis'] = $this->db->get('pembeli')->result_array();
 
-        $data['title'] = "Edit Transaksi";
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');

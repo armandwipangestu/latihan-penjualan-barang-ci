@@ -35,10 +35,18 @@
                     Pembayaran
                 </a>
 
-                <a href="#" data-url="" class="btn btn-dark keluar">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    Keluar
-                </a>
+                <li class="nav-item dropdown mt-2">
+                    <a class="dropdown-toggle text-dark" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                        <i class="fa-solid fa-user me-1"></i>
+                        <?= $user['user_name']; ?>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarScrollingDropdown">
+                </li>
+                <li>
+                    <a class="dropdown-item logout" href="auth/logout" id="logout">
+                        <i class="fas fa-sign-out-alt"></i> Keluar
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

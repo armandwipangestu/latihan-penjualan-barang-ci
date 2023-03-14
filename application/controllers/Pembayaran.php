@@ -12,6 +12,8 @@ class Pembayaran extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard Pembayaran";
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $data['transaksis'] = $this->db->get('transaksi')->result_array();
         $this->load->model("Pembayaran_model", "pembayaran");
         $data['pembayaran'] = $this->pembayaran->getPembayaran();
@@ -46,6 +48,9 @@ class Pembayaran extends CI_Controller
 
     public function edit()
     {
+        $data['title'] = "Edit Pembayaran";
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $id_pembayaran = $this->uri->segment(3);
         $query = $this->db->get_where('pembayaran', ['id_pembayaran' => $id_pembayaran])->row_array();
         $data['pembayaran'] = $query;
@@ -55,7 +60,6 @@ class Pembayaran extends CI_Controller
 
         $data['transaksis'] = $this->db->get('transaksi')->result_array();
 
-        $data['title'] = "Edit Pembayaran";
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');

@@ -12,6 +12,8 @@ class Barang extends CI_Controller
     public function index()
     {
         $data['title'] = "Dashboard Barang";
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $data['suppliers'] = $this->db->get('supplier')->result_array();
         $this->load->model("Barang_model", "barang");
         $data['barang'] = $this->barang->getBarang();
@@ -48,6 +50,9 @@ class Barang extends CI_Controller
 
     public function edit()
     {
+        $data['title'] = "Edit Barang";
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $id_barang = $this->uri->segment(3);
         $query = $this->db->get_where('barang', ['id_barang' => $id_barang])->row_array();
         $data['barang'] = $query;
@@ -57,7 +62,6 @@ class Barang extends CI_Controller
 
         $data['suppliers'] = $this->db->get('supplier')->result_array();
 
-        $data['title'] = "Edit Barang";
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');

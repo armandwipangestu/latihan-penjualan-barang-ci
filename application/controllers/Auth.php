@@ -1,14 +1,16 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-Class Auth extends CI_Controller {
+class Auth extends CI_Controller
+{
     public function __construct()
     {
         parent::__construct();
         $this->load->library("form_validation");
     }
 
-    public function index() {
+    public function index()
+    {
         $this->form_validation->set_rules('username', 'Username', 'trim|required');
         $this->form_validation->set_rules('password', 'Password', 'trim|required');
 
@@ -22,7 +24,8 @@ Class Auth extends CI_Controller {
         }
     }
 
-    private function _login() {
+    private function _login()
+    {
         $username = $this->input->post('username');
         $password = $this->input->post('password');
 
@@ -41,5 +44,13 @@ Class Auth extends CI_Controller {
             $this->session->set_flashdata('message', '<div class="alert alert-danger">Petugas tidak ditemukan</div>');
             redirect('auth');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('user_name');
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Anda telah logout</div>');
+        redirect('auth');
     }
 }

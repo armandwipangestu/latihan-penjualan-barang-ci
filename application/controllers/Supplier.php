@@ -11,7 +11,8 @@ class Supplier extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Supplier';
+        $data['title'] = 'Dashboard Supplier';
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
         $data['supplier'] = $this->db->get('supplier')->result_array();
 
         $this->load->view('templates/header', $data);
@@ -44,11 +45,13 @@ class Supplier extends CI_Controller
 
     public function edit()
     {
+        $data['title'] = "Edit Supplier";
+        $data['user'] = $this->db->get_where('petugas', ['user_name' => $this->session->userdata('user_name')])->row_array();
+
         $id_supplier = $this->uri->segment(3);
         $query = $this->db->get_where('supplier', ['id_supplier' => $id_supplier])->row_array();
 
         $data['supplier'] = $query;
-        $data['title'] = "Edit Supplier";
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/navbar');
