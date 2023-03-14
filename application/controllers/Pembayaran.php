@@ -85,4 +85,13 @@ class Pembayaran extends CI_Controller
             redirect('pembayaran/edit/' . $this->input->post('id_pembayaran'));
         }
     }
+
+    public function delete()
+    {
+        $id_pembayaran = $this->uri->segment(3);
+        $this->db->where('id_pembayaran', $id_pembayaran);
+        $this->db->delete('pembayaran');
+        $this->session->set_flashdata('message', '<div class="alert alert-success">Pembayaran Berhasil Dihapus!</div>');
+        redirect('pembayaran');
+    }
 }
