@@ -31,14 +31,15 @@ class Auth extends CI_Controller
 
         $user = $this->db->get_where('petugas', ['user_name' => $username])->row_array();
         if ($user) {
-            // $this->session->set_flashdata('message', '<div class="alert alert-success">Petugas ditemukan</div>');
-            // redirect('auth');
             if ($password == $user['password']) {
                 $data = [
                     'user_name' => $user['user_name'],
                 ];
                 $this->session->set_userdata($data);
                 redirect('admin');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger">Password yang anda masukan salah!</div>');
+                redirect('auth');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger">Petugas tidak ditemukan</div>');
